@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
 <head>
-<!-- DRYTECH V16: categorie a dissolvenza guidate dallo scorrimento verticale -->
+<!-- DRYTECH V20: CTA verticali e testi con ingresso progressivo -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101820">
@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}
 .eyebrow{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700}
 h1{font-size:clamp(3.2rem,9vw,7.8rem);line-height:.94;letter-spacing:-.065em;margin:22px 0 26px;max-width:900px}
 .lead{font-size:clamp(1.05rem,2vw,1.35rem);max-width:570px;color:#e0e6e9}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.actions{display:flex;flex-direction:column;align-items:stretch;gap:12px;width:min(100%,420px);margin-top:30px}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:99px;background:var(--accent);color:#101820;font-weight:700;font-size:.95rem;transition:transform .2s,background .2s}
 .btn:hover{transform:translateY(-2px);background:#e2f4ef}
 .btn.secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,.5)}
@@ -138,6 +138,13 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
 .business{background:#f5f5f7;color:#1d1d1f}.business .eyebrow{color:#796447}.business .intro{color:#626269}.business-image{border-radius:24px}.benefits li{border-color:rgba(0,0,0,.12)}.business .btn{background:#1d1d1f;color:#fff;border-color:#1d1d1f}.business .btn:hover{background:#333336;border-color:#333336}.note{color:#66666d}
 .contact{background:#080809}.contact-panel{border-color:rgba(255,255,255,.16);border-radius:22px;background:rgba(255,255,255,.025)}
 .reveal{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.actions .btn{width:100%;min-height:54px}
+.intro-actions .business-cta{background:transparent;color:#f8fafb;border:1px solid rgba(255,255,255,.5);box-shadow:none}
+.scroll-reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1);transition-delay:var(--delay,0ms)}
+.scroll-reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-list li{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.stagger-list.visible li{opacity:1;transform:translateY(0)}
+.stagger-list.visible li:nth-child(1){transition-delay:100ms}.stagger-list.visible li:nth-child(2){transition-delay:220ms}.stagger-list.visible li:nth-child(3){transition-delay:340ms}
 @media(max-width:800px){.category-grid{gap:13px}.category-card{flex-basis:78vw;height:430px}}
 @media(max-width:480px){.nav{padding:13px 5vw}.category-grid{gap:12px;padding-bottom:12px}.category-card{flex-basis:82vw;height:430px;max-height:70svh;min-height:350px;border-radius:20px}.category-label{left:19px;right:55px;bottom:22px;font-size:1.55rem}.category-arrow{width:38px;height:38px;right:14px;bottom:17px}.category-controls{margin-top:4px}.hero-intro h1{letter-spacing:-.06em}.section-head{margin-bottom:30px}}
 @media(prefers-reduced-motion:reduce){.category-card img,.category-arrow,.btn{transition:none}}
@@ -192,13 +199,13 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
   </div>
 </section>
 <section class="hero-intro" style="background:#0b0c0e;color:#fff;padding:78px 8vw 84px;text-align:center">
-  <div class="eyebrow">DRYTECH · La cura dei tessuti</div>
-  <h1 style="font-size:clamp(2.5rem,7vw,6rem);line-height:.96;letter-spacing:-.06em;margin:20px auto 14px;max-width:1000px">La qualità si vede.<br>La cura si sente.</h1>
-  <div style="color:#b18b59;font-size:clamp(.8rem,1.5vw,1.05rem);font-weight:600;letter-spacing:.22em;margin:0 auto 28px">OLTRE IL PULITO</div>
-  <p class="lead" style="margin:0 auto;max-width:760px">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
-  <div class="actions" style="justify-content:center">
+  <div class="eyebrow scroll-reveal" style="--delay:0ms">DRYTECH · La cura dei tessuti</div>
+  <h1 class="scroll-reveal" style="--delay:100ms;font-size:clamp(2.5rem,7vw,6rem);line-height:.96;letter-spacing:-.06em;margin:20px auto 14px;max-width:1000px">La qualità si vede.<br>La cura si sente.</h1>
+  <div class="scroll-reveal" style="--delay:180ms;color:#b18b59;font-size:clamp(.8rem,1.5vw,1.05rem);font-weight:600;letter-spacing:.22em;margin:0 auto 28px">OLTRE IL PULITO</div>
+  <p class="lead scroll-reveal" style="--delay:260ms;margin:0 auto;max-width:760px">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
+  <div class="actions intro-actions scroll-reveal" style="--delay:360ms;justify-content:center;margin-left:auto;margin-right:auto;align-items:stretch">
     <a class="btn per-te-button" href="#servizi">Per te <span aria-hidden="true">↗</span></a>
-    <a class="btn secondary" href="#aziende">Soluzioni per aziende</a>
+    <a class="btn secondary business-cta" href="#aziende">Per aziende e professionisti <span aria-hidden="true">↗</span></a>
   </div>
 </section>
 
@@ -231,7 +238,7 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
       <div class="eyebrow">DRYTECH Business</div>
       <h2>Il tuo lavoro corre. La gestione dei tessuti, semplifichiamola.</h2>
       <p class="intro">Per hotel, ristoranti, centri estetici, palestre e altre attività che utilizzano tessuti nel lavoro quotidiano. Raccontaci di cosa hai bisogno: valuteremo insieme una soluzione adatta.</p>
-      <ul class="benefits">
+      <ul class="benefits stagger-list">
         <li>Richieste personalizzate in base all'attività</li>
         <li>Confronto su quantità e frequenza del servizio</li>
         <li>Un contatto diretto per discutere le esigenze</li>
@@ -322,8 +329,8 @@ window.addEventListener('resize',requestStoryUpdate);
 updateStory();
 if('IntersectionObserver' in window){
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.12});
- document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
+ document.querySelectorAll('.reveal,.scroll-reveal,.stagger-list').forEach(el=>observer.observe(el));
+}else{document.querySelectorAll('.reveal,.scroll-reveal,.stagger-list').forEach(el=>el.classList.add('visible'));}
 </script>
 </body>
 </html>
