@@ -216,7 +216,7 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
         <p class="lead">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
       </div>
       <a class="btn btn-primary intro-button stage-reveal" data-stage="4" href="#servizi">Per te</a>
-      <a class="btn btn-secondary intro-button stage-reveal" data-stage="5" href="#aziende">Per aziende e professionisti ↗</a>
+      <a class="btn btn-secondary intro-button stage-reveal" data-stage="5" href="#aziende">Per aziende e professionisti</a>
     </div>
   </div>
 </section>
@@ -445,6 +445,23 @@ if('IntersectionObserver' in window){
 @media(prefers-reduced-motion:reduce){
  .staged-intro .stage-reveal{transition:none;filter:none;transform:none}
 }
+
+/* V27: gerarchia visiva dei pulsanti della sezione introduttiva */
+.staged-intro .intro-actions .btn-primary{
+  background:#C4A06A!important;
+  color:#171717!important;
+  border:1px solid #C4A06A!important;
+  box-shadow:none!important;
+}
+.staged-intro .intro-actions .btn-secondary{
+  background:#292A2C!important;
+  color:#FFFFFF!important;
+  border:1px solid #55565A!important;
+  box-shadow:none!important;
+}
+.staged-intro .intro-actions .btn-primary:hover{background:#D0AE7B!important}
+.staged-intro .intro-actions .btn-secondary:hover{background:#343538!important;border-color:#77787C!important}
+
 </style>
 <script>
 (function(){
