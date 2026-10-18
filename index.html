@@ -78,6 +78,19 @@ footer{padding:25px 8vw;display:flex;justify-content:space-between;gap:20px;flex
 .reveal.visible{opacity:1;transform:translateY(0)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.category-intro{max-width:760px;color:#c6cdd1;font-size:1.05rem;margin:18px 0 0}
+.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.category-card{position:relative;display:block;min-height:285px;aspect-ratio:1.25/1;border:1px solid rgba(177,138,88,.45);border-radius:16px;overflow:hidden;background:#181818}
+.category-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.category-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.25) 48%,rgba(0,0,0,.02) 100%)}
+.category-card:hover img{transform:scale(1.045)}
+.category-label{position:absolute;z-index:2;left:20px;right:58px;bottom:19px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.3rem,2.2vw,2rem);line-height:1.1}
+.category-note{display:block;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:#d4c5b0;margin-top:7px}
+.category-arrow{position:absolute;z-index:2;right:17px;bottom:18px;width:38px;height:38px;border:1px solid #c49a61;color:#e2b777;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+@media(max-width:800px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.category-card{min-height:220px}}
+@media(max-width:480px){.category-grid{grid-template-columns:1fr 1fr}.category-card{min-height:180px;aspect-ratio:.88/1}.category-label{left:13px;right:42px;bottom:14px;font-size:1.22rem}.category-note{font-size:.55rem}.category-arrow{width:30px;height:30px;right:10px;bottom:12px}}
+
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{animation:none;transition:none;opacity:1;transform:none}.hero-brand{opacity:1!important;transform:none!important}.brand-tag{opacity:1!important;transform:none!important}.bubble{opacity:.4!important;transform:none!important}}
 @media(max-width:700px){
  .nav{padding:15px 5vw}.navlinks{display:none}.menu{display:block}
@@ -92,7 +105,7 @@ footer{padding:25px 8vw;display:flex;justify-content:space-between;gap:20px;flex
 </head>
 <body>
 <header class="nav" id="nav">
-  <a class="logo" href="#home" aria-label="DRYTECH home"><img src="drytech-logo.png?v=12" alt="DRYTECH, Oltre il pulito"></a>
+  <a class="logo" href="#home" aria-label="DRYTECH home"><img src="drytech-logo.png?v=13" alt="DRYTECH, Oltre il pulito"></a>
   <nav class="navlinks" aria-label="Navigazione principale">
     <a href="#servizi">Servizi</a><a href="#aziende">Per le aziende</a><a href="#contatti">Contatti</a>
   </nav>
@@ -104,7 +117,7 @@ footer{padding:25px 8vw;display:flex;justify-content:space-between;gap:20px;flex
   <div class="hero-stage">
     <div class="bubble-layer" aria-hidden="true"><span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span><span class="bubble b4"></span><span class="bubble b5"></span><span class="bubble b6"></span></div>
     <div class="hero-brand" id="heroBrand" aria-label="DRYTECH, oltre il pulito">
-      <img class="hero-logo" src="drytech-logo.png?v=12" alt="DRYTECH"><div class="brand-tag">OLTRE IL PULITO</div>
+      <img class="hero-logo" src="drytech-logo.png?v=13" alt="DRYTECH"><div class="brand-tag">OLTRE IL PULITO</div>
     </div>
     <div class="hero-hint">Scorri per entrare <span>⌄</span></div>
   </div>
@@ -115,25 +128,26 @@ footer{padding:25px 8vw;display:flex;justify-content:space-between;gap:20px;flex
   <div style="color:#b18b59;font-size:clamp(.8rem,1.5vw,1.05rem);font-weight:600;letter-spacing:.22em;margin:0 auto 28px">OLTRE IL PULITO</div>
   <p class="lead" style="margin:0 auto;max-width:760px">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
   <div class="actions" style="justify-content:center">
-    <a class="btn" href="#aziende">Soluzioni per aziende ↗</a>
-    <a class="btn secondary" href="#servizi">Scopri i servizi</a>
+    <a class="btn" href="#servizi">Per te ↗</a>
+    <a class="btn secondary" href="#aziende">Soluzioni per aziende</a>
   </div>
 </section>
 
 <section class="private" id="servizi">
   <div class="section-head reveal">
-    <div><div class="eyebrow">I nostri servizi</div><h2>Ogni tessuto<br>ha la sua cura.</h2></div>
-    <p class="intro">DRYTECH si rivolge a chi cerca attenzione per i propri capi e a chi ha bisogno di un servizio affidabile per la propria attività.</p>
+    <div><div class="eyebrow">Per te</div><h2>Ogni tessuto<br>ha la sua cura.</h2></div>
+    <p class="intro">Dai capi di tutti i giorni agli indumenti più delicati, ogni tessuto merita un’attenzione dedicata.</p>
   </div>
-  <div class="cards">
-    <article class="card reveal">
-      <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85" alt="Tessuti ordinati in un ambiente luminoso" loading="lazy">
-      <div class="card-content"><div class="eyebrow">Per i privati</div><h3>La cura di ogni giorno.</h3><p>Un servizio pensato per i tuoi capi e i tessuti di casa. Contattaci per conoscere i trattamenti disponibili.</p><a class="arrow" href="#contatti" aria-label="Contatta DRYTECH per i privati">Scopri di più ↗</a></div>
-    </article>
-    <article class="card reveal">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85" alt="Biancheria pulita e piegata" loading="lazy">
-      <div class="card-content"><div class="eyebrow">Per le aziende</div><h3>Un partner per i tuoi tessuti.</h3><p>Soluzioni da valutare insieme in base alla tua attività, ai volumi e alle tue esigenze operative.</p><a class="arrow" href="#aziende" aria-label="Scopri i servizi per aziende">Scopri di più ↗</a></div>
-    </article>
+  <div class="category-grid">
+    <a class="category-card reveal" href="#contatti"><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1000&q=85" alt="Uomo elegante in giacca e cravatta in un contesto urbano" loading="lazy"><span class="category-label">Abiti e completi</span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=1000&q=85" alt="Camicie eleganti appese" loading="lazy"><span class="category-label">Camicie</span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="abiti-donna.jpg" alt="Abito da sera nero con schiena scoperta" loading="lazy"><span class="category-label">Abiti da donna</span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="giacche-giubbotti.jpg" alt="Due modelli giovani con piumini neri lucidi" loading="lazy"><span class="category-label">Giacche e giubbotti<span class="category-note">Anche piumini e modelli bombati</span></span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1000&q=85" alt="Maglieria piegata in tonalità neutre" loading="lazy"><span class="category-label">Maglieria e capi delicati</span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&fit=crop&w=1000&q=85" alt="Cappotti eleganti in un guardaroba raffinato" loading="lazy"><span class="category-label">Cappotti</span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=1000&q=85" alt="Tappeto decorativo in lana" loading="lazy"><span class="category-label">Tappeti</span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=1000&q=85" alt="Piumone bianco su un letto" loading="lazy"><span class="category-label">Piumoni</span><span class="category-arrow">↗</span></a>
+    <a class="category-card reveal" href="#contatti"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85" alt="Tende chiare in un ambiente moderno" loading="lazy"><span class="category-label">Tende</span><span class="category-arrow">↗</span></a>
   </div>
 </section>
 
