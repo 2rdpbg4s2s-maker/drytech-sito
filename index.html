@@ -205,14 +205,19 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
     <div class="hero-hint">Scorri per entrare <span>⌄</span></div>
   </div>
 </section>
-<section class="hero-intro" style="background:#0b0c0e;color:#fff;padding:78px 8vw 84px;text-align:center">
-  <h1 class="scroll-reveal" style="--delay:0ms;font-size:clamp(2.5rem,7vw,6rem);line-height:.96;letter-spacing:-.06em;margin:20px auto 14px;max-width:1000px;color:#fff">La qualità si vede.<br>La cura si sente.</h1>
-  <div class="eyebrow scroll-reveal" style="--delay:220ms">DRYTECH · La cura dei tessuti</div>
-  <div class="scroll-reveal" style="--delay:340ms;color:#c6a779;font-size:clamp(.8rem,1.5vw,1.05rem);font-weight:600;letter-spacing:.22em;margin:18px auto 28px">OLTRE IL PULITO</div>
-  <p class="lead scroll-reveal" style="--delay:460ms;margin:0 auto;max-width:760px">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
-  <div class="actions intro-actions scroll-reveal" style="--delay:620ms;justify-content:center;margin-left:auto;margin-right:auto;align-items:stretch">
-    <a class="btn per-te-button" href="#servizi">Per te <span aria-hidden="true">↗</span></a>
-    <a class="btn secondary business-cta" href="#aziende">Per aziende e professionisti <span aria-hidden="true">↗</span></a>
+<section class="hero-intro staged-intro" style="background:#0b0c0e;color:#fff;padding:78px 8vw 84px;text-align:center">
+  <div class="eyebrow stage-reveal" data-stage="0">DRYTECH · LA CURA DEI TESSUTI</div>
+  <div class="headline-stage">
+    <h1 class="stage-reveal headline-line" data-stage="1">La qualità si vede.</h1>
+    <h2 class="stage-reveal headline-line" data-stage="2">La cura si sente.</h2>
+  </div>
+  <div class="copy-stage stage-reveal" data-stage="3">
+    <div style="color:#c6a779;font-size:clamp(.8rem,1.5vw,1.05rem);font-weight:600;letter-spacing:.22em;margin:18px auto 28px">OLTRE IL PULITO</div>
+    <p class="lead" style="margin:0 auto;max-width:760px">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
+  </div>
+  <div class="actions intro-actions stage-reveal" data-stage="4" style="justify-content:center;margin-left:auto;margin-right:auto;align-items:stretch">
+    <a class="btn btn-primary" href="#servizi">Per te</a>
+    <a class="btn btn-secondary" href="#aziende">Per aziende e professionisti ↗</a>
   </div>
 </section>
 
@@ -338,6 +343,56 @@ if('IntersectionObserver' in window){
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.12});
  document.querySelectorAll('.reveal,.scroll-reveal,.stagger-list').forEach(el=>observer.observe(el));
 }else{document.querySelectorAll('.reveal,.scroll-reveal,.stagger-list').forEach(el=>el.classList.add('visible'));}
+</script>
+
+<style>
+/* V23: sequenza narrativa controllata dallo scorrimento, senza bloccare la pagina */
+.staged-intro{position:relative; padding-top:clamp(70px,12vh,130px)!important; padding-bottom:clamp(70px,12vh,130px)!important}
+.staged-intro .eyebrow{color:#c6a779;font-size:clamp(.78rem,1.5vw,1.05rem);font-weight:650;letter-spacing:.22em;margin:0 auto 34px}
+.staged-intro .headline-stage{margin:0 auto 34px;max-width:1000px}
+.staged-intro .headline-line{font-size:clamp(2.5rem,7vw,6rem);line-height:.98;letter-spacing:-.06em;font-weight:700;color:#fff;margin:0 auto 10px}
+.staged-intro .copy-stage{margin:30px auto 0}
+.staged-intro .lead{font-size:clamp(1.1rem,2.2vw,1.7rem);line-height:1.55;color:#e1e1e1}
+.staged-intro .intro-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:42px}
+.staged-intro .stage-reveal{opacity:0;transform:translateY(28px);filter:blur(5px);transition:opacity 850ms ease,transform 1000ms cubic-bezier(.2,.7,.2,1),filter 1000ms ease;will-change:opacity,transform,filter}
+.staged-intro .stage-reveal.is-visible{opacity:1;transform:translateY(0);filter:blur(0)}
+.staged-intro .headline-line{min-height:1em}
+.staged-intro .headline-line:not(.is-visible){visibility:hidden}
+.staged-intro .copy-stage:not(.is-visible),.staged-intro .intro-actions:not(.is-visible){visibility:hidden}
+.staged-intro .copy-stage,.staged-intro .intro-actions{transition-delay:100ms}
+@media(prefers-reduced-motion:reduce){
+ .staged-intro .stage-reveal{transition:none;filter:none;transform:none}
+}
+@media(max-width:700px){
+ .staged-intro{padding-left:6vw!important;padding-right:6vw!important}
+ .staged-intro .headline-line{font-size:clamp(2.35rem,10vw,4rem);letter-spacing:-.055em}
+ .staged-intro .intro-actions{gap:12px}
+ .staged-intro .intro-actions .btn{width:100%}
+}
+</style>
+<script>
+(function(){
+  const intro = document.querySelector('.staged-intro');
+  if(!intro) return;
+  const stages = Array.from(intro.querySelectorAll('.stage-reveal'));
+  let lastStage = -1;
+  function updateStages(){
+    const rect = intro.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const progress = Math.max(0, Math.min(1, (vh * 0.82 - rect.top) / Math.max(1, rect.height * 0.82)));
+    const current = Math.min(4, Math.floor(progress * 5.3));
+    if(current !== lastStage){
+      stages.forEach(el => {
+        const n = Number(el.dataset.stage);
+        el.classList.toggle('is-visible', n <= current);
+      });
+      lastStage = current;
+    }
+  }
+  window.addEventListener('scroll', updateStages, {passive:true});
+  window.addEventListener('resize', updateStages);
+  updateStages();
+})();
 </script>
 </body>
 </html>
