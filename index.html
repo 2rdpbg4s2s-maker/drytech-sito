@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101820">
+<meta name="description" content="DRYTECH, servizi di lavanderia per privati e aziende. Contattaci per informazioni e richieste dedicate.">
+<title>DRYTECH | Cura professionale dei tessuti</title>
+<style>
+:root{--ink:#101820;--paper:#f5f5f1;--muted:#aab5bd;--accent:#c8e5df;--line:rgba(255,255,255,.18)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:#f8fafb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 6vw;background:rgba(16,24,32,.78);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{font-weight:800;letter-spacing:.22em;font-size:1.1rem}
+.navlinks{display:flex;gap:24px;font-size:.9rem;color:#d8e0e4}
+.menu{display:none;background:none;border:1px solid #71808b;color:white;border-radius:99px;padding:8px 12px}
+.hero{min-height:94svh;display:flex;align-items:flex-end;padding:150px 8vw 10vh;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(7,14,20,.88),rgba(7,14,20,.36)),linear-gradient(0deg,rgba(7,14,20,.72),transparent 65%),url('https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=2000&q=85') center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(200,229,223,.08));pointer-events:none}
+.hero-content{max-width:850px;position:relative;z-index:1;animation:rise .9s ease both}
+.eyebrow{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-size:clamp(3.2rem,9vw,7.8rem);line-height:.94;letter-spacing:-.065em;margin:22px 0 26px;max-width:900px}
+.lead{font-size:clamp(1.05rem,2vw,1.35rem);max-width:570px;color:#e0e6e9}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:99px;background:var(--accent);color:#101820;font-weight:700;font-size:.95rem;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:#e2f4ef}
+.btn.secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,.5)}
+section{padding:110px 8vw}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:42px}
+h2{font-size:clamp(2.3rem,5vw,5rem);line-height:1;letter-spacing:-.055em;margin:12px 0;max-width:760px}
+.intro{color:#b8c2c8;max-width:430px;margin:0}
+.private{background:var(--paper);color:var(--ink)}
+.private .eyebrow{color:#3c7068}
+.private .intro{color:#53616a}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{min-height:390px;padding:30px;border-radius:18px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:#26333d}
+.card:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.76),rgba(0,0,0,.04) 80%);z-index:1}
+.card img{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;transition:transform .7s ease}
+.card:hover img{transform:scale(1.045)}
+.card-content{position:relative;z-index:2;color:white}
+.card h3{font-size:2rem;line-height:1.05;letter-spacing:-.04em;margin:10px 0}
+.card p{max-width:450px;color:#e1e5e7}
+.arrow{font-size:1.3rem}
+.business{background:#dce9e6;color:var(--ink);position:relative;overflow:hidden}
+.business .eyebrow{color:#37665e}
+.business .intro{color:#42544f}
+.business-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.business-image{height:520px;border-radius:18px;overflow:hidden}
+.business-image img{width:100%;height:100%;object-fit:cover}
+.business-copy h2{margin-bottom:24px}
+.benefits{list-style:none;padding:0;margin:28px 0}
+.benefits li{padding:13px 0;border-bottom:1px solid rgba(16,24,32,.18)}
+.benefits li:before{content:"↗";margin-right:12px;font-weight:800}
+.note{font-size:.85rem;color:#52615d}
+.contact{background:#101820}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.contact h2{margin-bottom:22px}
+.contact-panel{padding:28px;border:1px solid var(--line);border-radius:18px}
+.contact-panel p{color:#c4cdd2}
+.contact-line{padding:15px 0;border-bottom:1px solid var(--line)}
+footer{padding:25px 8vw;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#9eabb3;border-top:1px solid var(--line);font-size:.85rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.hero-content{animation:none;transition:none;opacity:1;transform:none}}
+@media(max-width:700px){
+ .nav{padding:15px 5vw}.navlinks{display:none}.menu{display:block}
+ .nav.open .navlinks{display:flex;position:absolute;top:60px;left:0;right:0;padding:20px 5vw;background:#101820;flex-direction:column;gap:18px;border-bottom:1px solid var(--line)}
+ .hero{min-height:88svh;padding:135px 6vw 9vh;background-position:58% center}
+ section{padding:76px 6vw}.section-head{display:block}.section-head .intro{margin-top:18px}
+ .cards,.business-layout,.contact-grid{grid-template-columns:1fr}
+ .card{min-height:340px}.business-layout{gap:30px}.business-image{height:350px}
+ footer{padding:22px 6vw}
+}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <a class="logo" href="#home" aria-label="DRYTECH home">DRYTECH</a>
+  <nav class="navlinks" aria-label="Navigazione principale">
+    <a href="#servizi">Servizi</a><a href="#aziende">Per le aziende</a><a href="#contatti">Contatti</a>
+  </nav>
+  <button class="menu" id="menu" aria-label="Apri menu" aria-expanded="false">Menu ☰</button>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">DRYTECH · Cura dei tessuti</div>
+    <h1>La cura dei tessuti.<br>Fatta bene.</h1>
+    <p class="lead">Servizi di lavanderia per privati e soluzioni dedicate alle attività che vogliono prendersi cura dei propri tessuti con continuità e attenzione.</p>
+    <div class="actions">
+      <a class="btn" href="#aziende">Soluzioni per aziende ↗</a>
+      <a class="btn secondary" href="#servizi">Scopri i servizi</a>
+    </div>
+  </div>
+</section>
+
+<section class="private" id="servizi">
+  <div class="section-head reveal">
+    <div><div class="eyebrow">I nostri servizi</div><h2>Ogni tessuto<br>ha la sua cura.</h2></div>
+    <p class="intro">DRYTECH si rivolge a chi cerca attenzione per i propri capi e a chi ha bisogno di un servizio affidabile per la propria attività.</p>
+  </div>
+  <div class="cards">
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85" alt="Tessuti ordinati in un ambiente luminoso" loading="lazy">
+      <div class="card-content"><div class="eyebrow">Per i privati</div><h3>La cura di ogni giorno.</h3><p>Un servizio pensato per i tuoi capi e i tessuti di casa. Contattaci per conoscere i trattamenti disponibili.</p><a class="arrow" href="#contatti" aria-label="Contatta DRYTECH per i privati">Scopri di più ↗</a></div>
+    </article>
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85" alt="Biancheria pulita e piegata" loading="lazy">
+      <div class="card-content"><div class="eyebrow">Per le aziende</div><h3>Un partner per i tuoi tessuti.</h3><p>Soluzioni da valutare insieme in base alla tua attività, ai volumi e alle tue esigenze operative.</p><a class="arrow" href="#aziende" aria-label="Scopri i servizi per aziende">Scopri di più ↗</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="business" id="aziende">
+  <div class="business-layout">
+    <div class="business-copy reveal">
+      <div class="eyebrow">DRYTECH Business</div>
+      <h2>Il tuo lavoro corre. La gestione dei tessuti, semplifichiamola.</h2>
+      <p class="intro">Per hotel, ristoranti, centri estetici, palestre e altre attività che utilizzano tessuti nel lavoro quotidiano. Raccontaci di cosa hai bisogno: valuteremo insieme una soluzione adatta.</p>
+      <ul class="benefits">
+        <li>Richieste personalizzate in base all'attività</li>
+        <li>Confronto su quantità e frequenza del servizio</li>
+        <li>Un contatto diretto per discutere le esigenze</li>
+      </ul>
+      <a class="btn" href="#contatti">Richiedi informazioni per la tua azienda ↗</a>
+      <p class="note">I servizi effettivamente disponibili, le modalità di ritiro e consegna e i tempi vanno confermati con DRYTECH prima della pubblicazione.</p>
+    </div>
+    <div class="business-image reveal">
+      <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1200&q=85" alt="Biancheria trattata in una lavanderia" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contatti">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Parliamone</div>
+      <h2>Hai una richiesta?<br>Partiamo da qui.</h2>
+      <p class="lead">Per informazioni sui servizi o per una richiesta aziendale, contatta direttamente DRYTECH.</p>
+    </div>
+    <div class="contact-panel reveal">
+      <div class="eyebrow">Contatti DRYTECH</div>
+      <p>Inserisci qui i recapiti ufficiali prima di pubblicare il sito.</p>
+      <div class="contact-line"><strong>Telefono</strong><br><a href="tel:+390000000000">[Inserire numero di telefono]</a></div>
+      <div class="contact-line"><strong>Email</strong><br><a href="mailto:info@esempio.it">[Inserire email aziendale]</a></div>
+      <div class="contact-line"><strong>Indirizzo e orari</strong><br>[Inserire indirizzo e orari]</div>
+      <p class="note">Sostituisci tutti i campi tra parentesi quadre con informazioni corrette prima di condividere il sito.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer><span>© <span id="year"></span> DRYTECH</span><span>Cura professionale dei tessuti</span><span>Privacy · Da aggiungere prima della pubblicazione definitiva</span></footer>
+<script>
+const nav=document.getElementById('nav'), menu=document.getElementById('menu');
+menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Chiudi ✕':'Menu ☰';});
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu ☰';}));
+document.getElementById('year').textContent=new Date().getFullYear();
+if('IntersectionObserver' in window){
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.12});
+ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
+</script>
+</body>
+</html>
