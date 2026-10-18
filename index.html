@@ -384,7 +384,7 @@ if('IntersectionObserver' in window){
   visibility:hidden;
   transform:translateY(22px);
   filter:blur(4px);
-  transition:opacity 950ms ease,transform 1100ms cubic-bezier(.2,.7,.2,1),filter 1100ms ease,visibility 0s linear 950ms;
+  transition:opacity 550ms ease,transform 650ms cubic-bezier(.2,.7,.2,1),filter 650ms ease,visibility 0s linear 550ms;
   pointer-events:none;
 }
 .staged-intro .stage-reveal.is-visible{
@@ -469,7 +469,7 @@ if('IntersectionObserver' in window){
   if(!intro) return;
   const stages = Array.from(intro.querySelectorAll('.stage-reveal'));
   let started = false;
-  const delays = [300, 1450, 2650, 3900, 5900, 7000];
+  const delays = [200, 850, 1550, 2250, 3000, 3500];
   function startSequence(){
     if(started) return;
     started = true;
