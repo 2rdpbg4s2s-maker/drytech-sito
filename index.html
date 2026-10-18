@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
 <head>
-<!-- DRYTECH V16: categorie a dissolvenza guidate dallo scorrimento verticale -->
+<!-- DRYTECH V17: griglia categorie intuitiva e responsive -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101820">
@@ -170,6 +170,21 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
 @media(max-width:700px){.category-story{height:660svh;margin-top:18px}.story-stage{top:80px;height:calc(100svh - 104px);min-height:430px;border-radius:20px}.story-copy{left:22px;right:18px;bottom:30px}.story-title{font-size:clamp(2.35rem,11vw,4rem);margin-bottom:14px}.story-topline{top:18px;left:22px;right:22px}.story-kicker{font-size:.68rem}.story-link{padding:10px 14px}.story-dots{padding-top:16px}}
 @media(prefers-reduced-motion:reduce){.story-slide,.story-slide img,.story-progress-fill,.story-dot{transition:none}.story-scroll-hint span{animation:none}}
 
+
+/* V17: griglia chiara e intuitiva, ispirazione minimal premium */
+.category-grid-v17{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:12px}
+.category-tile-v17{position:relative;display:block;min-width:0;aspect-ratio:4/3;min-height:230px;border-radius:20px;overflow:hidden;background:#1a1b1d;color:#fff;text-decoration:none;isolation:isolate}
+.category-tile-v17:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,.04) 70%);z-index:1;pointer-events:none}
+.category-tile-v17 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.category-tile-v17:hover img{transform:scale(1.035)}
+.tile-label-v17{position:absolute;z-index:2;left:20px;right:18px;bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fffaf1;font-size:clamp(1.15rem,2.5vw,1.8rem);line-height:1.12;font-weight:600;letter-spacing:-.035em;text-shadow:0 2px 12px rgba(0,0,0,.65)}
+.tile-label-v17>span{flex:0 0 34px;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(240,210,160,.85);color:#f0d2a0;font-size:1.1rem;font-weight:400;text-shadow:none}
+.tile-label-v17 small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.35;color:#fff;max-width:75%;margin-top:6px}
+.category-tile-v17:focus-visible{outline:3px solid #c69a59;outline-offset:3px}
+@media(max-width:600px){.category-grid-v17{gap:11px}.category-tile-v17{aspect-ratio:3/4;min-height:205px;border-radius:15px}.tile-label-v17{left:12px;right:10px;bottom:12px;font-size:clamp(.95rem,4vw,1.2rem);gap:7px}.tile-label-v17>span{flex-basis:28px;width:28px;height:28px;font-size:1rem}.tile-label-v17 small{font-size:.56rem;max-width:100%}.private{padding:76px 5vw}}
+@media(max-width:360px){.category-grid-v17{grid-template-columns:1fr}.category-tile-v17{aspect-ratio:4/3;min-height:220px}}
+@media(prefers-reduced-motion:reduce){.category-tile-v17 img{transition:none}}
+
 </style>
 </head>
 <body>
@@ -207,20 +222,16 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
     <div><div class="eyebrow">Per te</div><h2>Ogni tessuto<br>ha la sua cura.</h2></div>
     <p class="intro">Dai capi di tutti i giorni agli indumenti più delicati, ogni tessuto merita un’attenzione dedicata.</p>
   </div>
-  <div class="category-story" id="categoryStory" aria-label="Scorri verso il basso per esplorare le categorie">
-    <div class="story-stage" id="storyStage">
-      <div class="story-topline"><span id="storyCounter">01 / 09</span><div class="story-progress" aria-hidden="true"><div class="story-progress-fill" id="storyProgressFill"></div></div><span>DRYTECH · PER TE</span></div>
-      <article class="story-slide active" data-index="0" aria-hidden="false"><img src="abiti-completi.jpg" alt="Uomo in giacca e cravatta che cammina in un contesto urbano" loading="eager"><div class="story-copy"><div class="story-kicker">La cura dei tuoi capi</div><h3 class="story-title">Abiti e completi</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a><div class="story-scroll-hint">Scorri verso il basso per continuare <span aria-hidden="true">↓</span></div></div></article>
-      <article class="story-slide" data-index="1" aria-hidden="true"><img src="camicie.jpg" alt="Camicie eleganti appese" loading="lazy"><div class="story-copy"><div class="story-kicker">Essenziali, ogni giorno</div><h3 class="story-title">Camicie</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-      <article class="story-slide" data-index="2" aria-hidden="true"><img src="abiti-donna.jpg" alt="Abito nero elegante con schiena scoperta" loading="lazy"><div class="story-copy"><div class="story-kicker">Eleganza che si nota</div><h3 class="story-title">Abiti da donna</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-      <article class="story-slide" data-index="3" aria-hidden="true"><img src="giacche-giubbotti.jpg" alt="Due modelli con piumini neri lucidi e contemporanei" loading="lazy"><div class="story-copy"><div class="story-kicker">Stile contemporaneo</div><h3 class="story-title">Giacche e giubbotti</h3><p class="story-note">Anche piumini e modelli bombati</p><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-      <article class="story-slide" data-index="4" aria-hidden="true"><img src="maglieria-delicati.jpg" alt="Maglieria piegata in tonalità neutre" loading="lazy"><div class="story-copy"><div class="story-kicker">Delicatezza, nei dettagli</div><h3 class="story-title">Maglieria e capi delicati</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-      <article class="story-slide" data-index="5" aria-hidden="true"><img src="cappotti.jpg" alt="Donna adulta con cappotto cammello in un porticato elegante" loading="lazy"><div class="story-copy"><div class="story-kicker">Eleganza senza tempo</div><h3 class="story-title">Cappotti</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-      <article class="story-slide" data-index="6" aria-hidden="true"><img src="tappeti.jpg" alt="Tappeto decorativo in lana" loading="lazy"><div class="story-copy"><div class="story-kicker">Anche per la casa</div><h3 class="story-title">Tappeti</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-      <article class="story-slide" data-index="7" aria-hidden="true"><img src="piumoni.jpg" alt="Piumone bianco soffice in una camera moderna" loading="lazy"><div class="story-copy"><div class="story-kicker">Morbidezza e freschezza</div><h3 class="story-title">Piumoni</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-      <article class="story-slide" data-index="8" aria-hidden="true"><img src="tende.jpg" alt="Tende chiare a tutta altezza in un soggiorno luminoso" loading="lazy"><div class="story-copy"><div class="story-kicker">Luce, tessuti, ambienti</div><h3 class="story-title">Tende</h3><a class="story-link" href="#contatti">Scopri il servizio <span aria-hidden="true">↗</span></a></div></article>
-    </div>
-    <div class="story-dots" id="storyDots" aria-hidden="true"><span class="story-dot active"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span></div>
+  <div class="category-grid-v17" aria-label="Categorie di capi e tessuti">
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="abiti-completi.jpg" alt="Uomo in giacca e cravatta che cammina in un contesto urbano" loading="eager"><span class="tile-label-v17">Abiti e completi <span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="camicie.jpg" alt="Camicie eleganti" loading="lazy"><span class="tile-label-v17">Camicie <span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="abiti-donna.jpg" alt="Abito nero elegante con schiena scoperta" loading="lazy"><span class="tile-label-v17">Abiti da donna <span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="giacche-giubbotti.jpg" alt="Due modelli con piumini neri lucidi e contemporanei" loading="lazy"><span class="tile-label-v17">Giacche e giubbotti <small>Anche piumini e modelli bombati</small><span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="maglieria-delicati.jpg" alt="Maglieria e capi delicati" loading="lazy"><span class="tile-label-v17">Maglieria e capi delicati <span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="cappotti.jpg" alt="Cappotto cammello in un porticato elegante" loading="lazy"><span class="tile-label-v17">Cappotti <span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="tappeti.jpg" alt="Tappeto decorativo in lana" loading="lazy"><span class="tile-label-v17">Tappeti <span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="piumoni.jpg" alt="Piumone bianco soffice in una camera moderna" loading="lazy"><span class="tile-label-v17">Piumoni <span>↗</span></span></a>
+    <a class="category-tile-v17 reveal" href="#contatti"><img src="tende.jpg" alt="Tende chiare a tutta altezza in un soggiorno luminoso" loading="lazy"><span class="tile-label-v17">Tende <span>↗</span></span></a>
   </div>
 </section>
 
@@ -294,31 +305,6 @@ animateHero();
 menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Chiudi ✕':'Menu ☰';});
 document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu ☰';}));
 document.getElementById('year').textContent=new Date().getFullYear();
-const categoryStory=document.getElementById('categoryStory');
-const storySlides=[...document.querySelectorAll('.story-slide')];
-const storyDots=[...document.querySelectorAll('.story-dot')];
-const storyCounter=document.getElementById('storyCounter');
-const storyProgressFill=document.getElementById('storyProgressFill');
-let activeStoryIndex=0, storyTicking=false;
-function updateStory(){
-  if(!categoryStory) return;
-  const rect=categoryStory.getBoundingClientRect();
-  const travel=Math.max(1,categoryStory.offsetHeight-window.innerHeight);
-  const progress=Math.max(0,Math.min(1,-rect.top/travel));
-  const nextIndex=Math.min(storySlides.length-1,Math.floor(progress*storySlides.length));
-  if(nextIndex!==activeStoryIndex){
-    activeStoryIndex=nextIndex;
-    storySlides.forEach((slide,i)=>{const active=i===activeStoryIndex;slide.classList.toggle('active',active);slide.setAttribute('aria-hidden',String(!active));});
-    storyDots.forEach((dot,i)=>dot.classList.toggle('active',i===activeStoryIndex));
-    storyCounter.textContent=String(activeStoryIndex+1).padStart(2,'0')+' / '+String(storySlides.length).padStart(2,'0');
-    storyProgressFill.style.width=((activeStoryIndex+1)/storySlides.length*100)+'%';
-  }
-  storyTicking=false;
-}
-function requestStoryUpdate(){if(!storyTicking){storyTicking=true;requestAnimationFrame(updateStory);}}
-window.addEventListener('scroll',requestStoryUpdate,{passive:true});
-window.addEventListener('resize',requestStoryUpdate);
-updateStory();
 if('IntersectionObserver' in window){
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.12});
  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
