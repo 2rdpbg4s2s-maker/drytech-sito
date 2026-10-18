@@ -205,20 +205,22 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
     <div class="hero-hint">Scorri per entrare <span>⌄</span></div>
   </div>
 </section>
-<section class="hero-intro staged-intro" style="background:#0b0c0e;color:#fff;padding:78px 8vw 84px;text-align:center">
+<section class="hero-intro staged-intro" style="background:#0b0c0e;color:#fff;text-align:center">
+  <div class="sticky-scene">
   <div class="eyebrow stage-reveal" data-stage="0">DRYTECH · LA CURA DEI TESSUTI</div>
   <div class="headline-stage">
     <h1 class="stage-reveal headline-line" data-stage="1">La qualità si vede.</h1>
     <h2 class="stage-reveal headline-line" data-stage="2">La cura si sente.</h2>
   </div>
   <div class="copy-stage stage-reveal" data-stage="3">
-    <div style="color:#c6a779;font-size:clamp(.8rem,1.5vw,1.05rem);font-weight:600;letter-spacing:.22em;margin:18px auto 28px">OLTRE IL PULITO</div>
+    <div class="eyebrow-copy">OLTRE IL PULITO</div>
     <p class="lead" style="margin:0 auto;max-width:760px">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
   </div>
   <div class="actions intro-actions stage-reveal" data-stage="4" style="justify-content:center;margin-left:auto;margin-right:auto;align-items:stretch">
     <a class="btn btn-primary" href="#servizi">Per te</a>
     <a class="btn btn-secondary" href="#aziende">Per aziende e professionisti ↗</a>
   </div>
+</div>
 </section>
 
 <section class="private" id="servizi">
@@ -346,28 +348,94 @@ if('IntersectionObserver' in window){
 </script>
 
 <style>
-/* V23: sequenza narrativa controllata dallo scorrimento, senza bloccare la pagina */
-.staged-intro{position:relative; padding-top:clamp(70px,12vh,130px)!important; padding-bottom:clamp(70px,12vh,130px)!important}
-.staged-intro .eyebrow{color:#c6a779;font-size:clamp(.78rem,1.5vw,1.05rem);font-weight:650;letter-spacing:.22em;margin:0 auto 34px}
-.staged-intro .headline-stage{margin:0 auto 34px;max-width:1000px}
-.staged-intro .headline-line{font-size:clamp(2.5rem,7vw,6rem);line-height:.98;letter-spacing:-.06em;font-weight:700;color:#fff;margin:0 auto 10px}
-.staged-intro .copy-stage{margin:30px auto 0}
-.staged-intro .lead{font-size:clamp(1.1rem,2.2vw,1.7rem);line-height:1.55;color:#e1e1e1}
-.staged-intro .intro-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:42px}
-.staged-intro .stage-reveal{opacity:0;transform:translateY(28px);filter:blur(5px);transition:opacity 850ms ease,transform 1000ms cubic-bezier(.2,.7,.2,1),filter 1000ms ease;will-change:opacity,transform,filter}
-.staged-intro .stage-reveal.is-visible{opacity:1;transform:translateY(0);filter:blur(0)}
+<style>
+/* V24: scena nera sticky, contenuti rivelati progressivamente con lo scroll */
+.staged-intro{
+  position:relative;
+  padding:0!important;
+  min-height:440vh;
+  background:#0b0c0e!important;
+  color:#fff;
+}
+.staged-intro .sticky-scene{
+  position:sticky;
+  top:0;
+  min-height:100svh;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  box-sizing:border-box;
+  padding:clamp(28px,6vh,76px) 8vw;
+  overflow:hidden;
+  background:#0b0c0e;
+  text-align:center;
+}
+.staged-intro .eyebrow{
+  color:#c6a779;
+  font-size:clamp(.72rem,1.35vw,1rem);
+  font-weight:650;
+  letter-spacing:.22em;
+  margin:0 auto clamp(28px,5vh,56px);
+}
+.staged-intro .headline-stage{width:100%;max-width:1000px;margin:0 auto}
+.staged-intro .headline-line{
+  color:#fff;
+  font-size:clamp(2.5rem,7vw,6rem);
+  line-height:.98;
+  letter-spacing:-.06em;
+  font-weight:700;
+  margin:0 auto 12px;
+}
+.staged-intro .copy-stage{max-width:900px;margin:clamp(24px,4vh,42px) auto 0}
+.staged-intro .copy-stage .eyebrow-copy{
+  color:#c6a779;
+  font-size:clamp(.8rem,1.5vw,1.05rem);
+  font-weight:600;
+  letter-spacing:.22em;
+  margin:0 auto 22px;
+}
+.staged-intro .lead{
+  font-size:clamp(1rem,2vw,1.5rem);
+  line-height:1.55;
+  color:#e1e1e1;
+  margin:0 auto;
+}
+.staged-intro .intro-actions{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+  margin:clamp(24px,4vh,42px) auto 0;
+}
+.staged-intro .stage-reveal{
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(24px);
+  filter:blur(5px);
+  transition:opacity 900ms ease,transform 1050ms cubic-bezier(.2,.7,.2,1),filter 1050ms ease,visibility 0s linear 900ms;
+  will-change:opacity,transform,filter;
+}
+.staged-intro .stage-reveal.is-visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  filter:blur(0);
+  transition-delay:0s;
+}
 .staged-intro .headline-line{min-height:1em}
-.staged-intro .headline-line:not(.is-visible){visibility:hidden}
-.staged-intro .copy-stage:not(.is-visible),.staged-intro .intro-actions:not(.is-visible){visibility:hidden}
-.staged-intro .copy-stage,.staged-intro .intro-actions{transition-delay:100ms}
+@media(max-width:700px){
+ .staged-intro .sticky-scene{padding:26px 6vw}
+ .staged-intro .eyebrow{margin-bottom:clamp(24px,4vh,38px)}
+ .staged-intro .headline-line{font-size:clamp(2.25rem,9.2vw,3.9rem);letter-spacing:-.055em}
+ .staged-intro .copy-stage{margin-top:24px}
+ .staged-intro .lead{font-size:1.05rem;line-height:1.5}
+ .staged-intro .intro-actions{gap:12px;margin-top:24px}
+ .staged-intro .intro-actions .btn{width:100%}
+}
 @media(prefers-reduced-motion:reduce){
  .staged-intro .stage-reveal{transition:none;filter:none;transform:none}
-}
-@media(max-width:700px){
- .staged-intro{padding-left:6vw!important;padding-right:6vw!important}
- .staged-intro .headline-line{font-size:clamp(2.35rem,10vw,4rem);letter-spacing:-.055em}
- .staged-intro .intro-actions{gap:12px}
- .staged-intro .intro-actions .btn{width:100%}
 }
 </style>
 <script>
@@ -375,22 +443,27 @@ if('IntersectionObserver' in window){
   const intro = document.querySelector('.staged-intro');
   if(!intro) return;
   const stages = Array.from(intro.querySelectorAll('.stage-reveal'));
-  let lastStage = -1;
+  let scheduled = false;
   function updateStages(){
+    scheduled = false;
     const rect = intro.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
-    const progress = Math.max(0, Math.min(1, (vh * 0.82 - rect.top) / Math.max(1, rect.height * 0.82)));
-    const current = Math.min(4, Math.floor(progress * 5.3));
-    if(current !== lastStage){
-      stages.forEach(el => {
-        const n = Number(el.dataset.stage);
-        el.classList.toggle('is-visible', n <= current);
-      });
-      lastStage = current;
-    }
+    const travel = Math.max(1, intro.offsetHeight - vh);
+    const progress = Math.max(0, Math.min(1, -rect.top / travel));
+    // Five deliberate phases: eyebrow, headline line 1, headline line 2, copy, buttons.
+    const thresholds = [0.04, 0.23, 0.42, 0.62, 0.82];
+    stages.forEach(el => {
+      const stage = Number(el.dataset.stage);
+      el.classList.toggle('is-visible', progress >= thresholds[stage]);
+    });
   }
-  window.addEventListener('scroll', updateStages, {passive:true});
-  window.addEventListener('resize', updateStages);
+  function onScroll(){
+    if(scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(updateStages);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
   updateStages();
 })();
 </script>
