@@ -349,7 +349,7 @@ if('IntersectionObserver' in window){
 /* V25: scena nera fissa con sei passaggi distinti */
 .staged-intro{
   position:relative;
-  min-height:650vh;
+  min-height:160vh;
   padding:0!important;
   background:#0b0c0e!important;
   color:#fff;
@@ -468,27 +468,26 @@ if('IntersectionObserver' in window){
   const intro = document.querySelector('.staged-intro');
   if(!intro) return;
   const stages = Array.from(intro.querySelectorAll('.stage-reveal'));
-  const thresholds = [0, 0.16, 0.31, 0.46, 0.64, 0.79];
-  let scheduled = false;
-  function updateStages(){
-    scheduled = false;
-    const rect = intro.getBoundingClientRect();
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    const travel = Math.max(1, intro.offsetHeight - vh);
-    const progress = Math.max(0, Math.min(1, (0 - rect.top) / travel));
-    stages.forEach(el => {
-      const n = Number(el.dataset.stage);
-      el.classList.toggle('is-visible', progress >= thresholds[n]);
+  let started = false;
+  const delays = [300, 1450, 2650, 3900, 5900, 7000];
+  function startSequence(){
+    if(started) return;
+    started = true;
+    stages.forEach((el, i) => {
+      window.setTimeout(() => el.classList.add('is-visible'), delays[i]);
     });
   }
-  function scheduleUpdate(){
-    if(scheduled) return;
-    scheduled = true;
-    window.requestAnimationFrame(updateStages);
+  if('IntersectionObserver' in window){
+    const observer = new IntersectionObserver(entries => {
+      if(entries.some(entry => entry.isIntersecting)){
+        startSequence();
+        observer.disconnect();
+      }
+    }, {threshold: 0.25});
+    observer.observe(intro);
+  } else {
+    startSequence();
   }
-  window.addEventListener('scroll', scheduleUpdate, {passive:true});
-  window.addEventListener('resize', scheduleUpdate);
-  updateStages();
 })();
 </script>
 </body>
