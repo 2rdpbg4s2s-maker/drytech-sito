@@ -205,22 +205,20 @@ body{background:#050506;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFo
     <div class="hero-hint">Scorri per entrare <span>⌄</span></div>
   </div>
 </section>
-<section class="hero-intro staged-intro" style="background:#0b0c0e;color:#fff;text-align:center">
+<section class="hero-intro staged-intro" aria-label="La cura dei tessuti">
   <div class="sticky-scene">
-  <div class="eyebrow stage-reveal" data-stage="0">DRYTECH · LA CURA DEI TESSUTI</div>
-  <div class="headline-stage">
-    <h1 class="stage-reveal headline-line" data-stage="1">La qualità si vede.</h1>
-    <h2 class="stage-reveal headline-line" data-stage="2">La cura si sente.</h2>
+    <div class="intro-content">
+      <div class="eyebrow stage-reveal" data-stage="0">DRYTECH · LA CURA DEI TESSUTI</div>
+      <h1 class="headline-line stage-reveal" data-stage="1">La qualità si vede.</h1>
+      <h2 class="headline-line stage-reveal" data-stage="2">La cura si sente.</h2>
+      <div class="copy-stage stage-reveal" data-stage="3">
+        <div class="eyebrow-copy">OLTRE IL PULITO</div>
+        <p class="lead">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
+      </div>
+      <a class="btn btn-primary intro-button stage-reveal" data-stage="4" href="#servizi">Per te</a>
+      <a class="btn btn-secondary intro-button stage-reveal" data-stage="5" href="#aziende">Per aziende e professionisti ↗</a>
+    </div>
   </div>
-  <div class="copy-stage stage-reveal" data-stage="3">
-    <div class="eyebrow-copy">OLTRE IL PULITO</div>
-    <p class="lead" style="margin:0 auto;max-width:760px">Dal lavaggio a secco al lavaggio ad acqua, dallo stiro ai trattamenti specifici, ogni lavorazione è guidata dall’attenzione ai dettagli, dalla cura dei tessuti e dalle esigenze di ogni cliente.</p>
-  </div>
-  <div class="actions intro-actions stage-reveal" data-stage="4" style="justify-content:center;margin-left:auto;margin-right:auto;align-items:stretch">
-    <a class="btn btn-primary" href="#servizi">Per te</a>
-    <a class="btn btn-secondary" href="#aziende">Per aziende e professionisti ↗</a>
-  </div>
-</div>
 </section>
 
 <section class="private" id="servizi">
@@ -349,47 +347,75 @@ if('IntersectionObserver' in window){
 
 <style>
 <style>
-/* V24: scena nera sticky, contenuti rivelati progressivamente con lo scroll */
+/* V25: scena nera fissa con sei passaggi distinti */
 .staged-intro{
   position:relative;
+  min-height:650vh;
   padding:0!important;
-  min-height:440vh;
   background:#0b0c0e!important;
   color:#fff;
 }
 .staged-intro .sticky-scene{
   position:sticky;
   top:0;
-  min-height:100svh;
-  min-height:100vh;
+  height:100vh;
+  height:100svh;
+  width:100%;
   display:flex;
-  flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   box-sizing:border-box;
-  padding:clamp(28px,6vh,76px) 8vw;
+  padding:clamp(24px,5vh,64px) 7vw;
   overflow:hidden;
   background:#0b0c0e;
   text-align:center;
+}
+.staged-intro .intro-content{
+  position:relative;
+  width:100%;
+  max-width:1050px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.staged-intro .stage-reveal{
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(22px);
+  filter:blur(4px);
+  transition:opacity 950ms ease,transform 1100ms cubic-bezier(.2,.7,.2,1),filter 1100ms ease,visibility 0s linear 950ms;
+  pointer-events:none;
+}
+.staged-intro .stage-reveal.is-visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  filter:blur(0);
+  pointer-events:auto;
+  transition-delay:0s;
 }
 .staged-intro .eyebrow{
   color:#c6a779;
   font-size:clamp(.72rem,1.35vw,1rem);
   font-weight:650;
   letter-spacing:.22em;
-  margin:0 auto clamp(28px,5vh,56px);
+  margin:0 auto 26px;
 }
-.staged-intro .headline-stage{width:100%;max-width:1000px;margin:0 auto}
 .staged-intro .headline-line{
   color:#fff;
-  font-size:clamp(2.5rem,7vw,6rem);
+  font-size:clamp(2.45rem,7vw,6rem);
   line-height:.98;
   letter-spacing:-.06em;
   font-weight:700;
   margin:0 auto 12px;
 }
-.staged-intro .copy-stage{max-width:900px;margin:clamp(24px,4vh,42px) auto 0}
-.staged-intro .copy-stage .eyebrow-copy{
+.staged-intro .copy-stage{
+  max-width:900px;
+  margin:clamp(20px,3vh,34px) auto 0;
+}
+.staged-intro .eyebrow-copy{
   color:#c6a779;
   font-size:clamp(.8rem,1.5vw,1.05rem);
   font-weight:600;
@@ -402,68 +428,49 @@ if('IntersectionObserver' in window){
   color:#e1e1e1;
   margin:0 auto;
 }
-.staged-intro .intro-actions{
-  display:flex;
+.staged-intro .intro-button{
+  display:inline-flex;
   justify-content:center;
-  gap:16px;
-  flex-wrap:wrap;
-  margin:clamp(24px,4vh,42px) auto 0;
+  align-items:center;
+  margin:18px auto 0;
+  max-width:100%;
 }
-.staged-intro .stage-reveal{
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(24px);
-  filter:blur(5px);
-  transition:opacity 900ms ease,transform 1050ms cubic-bezier(.2,.7,.2,1),filter 1050ms ease,visibility 0s linear 900ms;
-  will-change:opacity,transform,filter;
-}
-.staged-intro .stage-reveal.is-visible{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
-  filter:blur(0);
-  transition-delay:0s;
-}
-.staged-intro .headline-line{min-height:1em}
 @media(max-width:700px){
- .staged-intro .sticky-scene{padding:26px 6vw}
- .staged-intro .eyebrow{margin-bottom:clamp(24px,4vh,38px)}
- .staged-intro .headline-line{font-size:clamp(2.25rem,9.2vw,3.9rem);letter-spacing:-.055em}
- .staged-intro .copy-stage{margin-top:24px}
- .staged-intro .lead{font-size:1.05rem;line-height:1.5}
- .staged-intro .intro-actions{gap:12px;margin-top:24px}
- .staged-intro .intro-actions .btn{width:100%}
+ .staged-intro .sticky-scene{padding:24px 6vw}
+ .staged-intro .eyebrow{font-size:.72rem;letter-spacing:.16em;margin-bottom:24px}
+ .staged-intro .headline-line{font-size:clamp(2.2rem,9vw,3.8rem);letter-spacing:-.055em}
+ .staged-intro .copy-stage{margin-top:22px}
+ .staged-intro .lead{font-size:1.02rem;line-height:1.48}
+ .staged-intro .intro-button{width:100%;margin-top:14px}
 }
 @media(prefers-reduced-motion:reduce){
  .staged-intro .stage-reveal{transition:none;filter:none;transform:none}
 }
-</style>
 <script>
 (function(){
   const intro = document.querySelector('.staged-intro');
   if(!intro) return;
   const stages = Array.from(intro.querySelectorAll('.stage-reveal'));
+  const thresholds = [0.015, 0.19, 0.36, 0.54, 0.72, 0.87];
   let scheduled = false;
   function updateStages(){
     scheduled = false;
     const rect = intro.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
     const travel = Math.max(1, intro.offsetHeight - vh);
-    const progress = Math.max(0, Math.min(1, -rect.top / travel));
-    // Five deliberate phases: eyebrow, headline line 1, headline line 2, copy, buttons.
-    const thresholds = [0.04, 0.23, 0.42, 0.62, 0.82];
+    const progress = Math.max(0, Math.min(1, (0 - rect.top) / travel));
     stages.forEach(el => {
-      const stage = Number(el.dataset.stage);
-      el.classList.toggle('is-visible', progress >= thresholds[stage]);
+      const n = Number(el.dataset.stage);
+      el.classList.toggle('is-visible', progress >= thresholds[n]);
     });
   }
-  function onScroll(){
+  function scheduleUpdate(){
     if(scheduled) return;
     scheduled = true;
     window.requestAnimationFrame(updateStages);
   }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('scroll', scheduleUpdate, {passive:true});
+  window.addEventListener('resize', scheduleUpdate);
   updateStages();
 })();
 </script>
